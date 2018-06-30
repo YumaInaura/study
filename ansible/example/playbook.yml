@@ -1,0 +1,6 @@
+---
+- hosts: example
+  tasks:
+    - name: echo message
+      debug:
+        msg: test
