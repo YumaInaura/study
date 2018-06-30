@@ -2,7 +2,7 @@
 - hosts: example
   tasks:
     - name: execute shell
-      shell: echo some message
+      shell: echo some message line 1"\n"some message line 2
       register: return_from_shell # 実行結果をansible変数に入れる
       changed_when: no
     - name: show previous shell stdout
