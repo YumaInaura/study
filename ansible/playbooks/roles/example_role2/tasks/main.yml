@@ -1,0 +1,4 @@
+- name: example 2 role debug echo
+  debug:
+   msg: this is example 2 role
+  
