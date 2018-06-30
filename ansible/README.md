@@ -11,5 +11,11 @@ ssh root@localhost -p 2222
 
 ```
 # ansible command test
-ansible example -i example/inventory.txt -m 'shell' -a 'ls -la'
+ansible example -i inventories/inventory.txt -m 'shell' -a 'ls -la'
 ```
+
+```
+# ansible-playbook command test
+ansible-playbook -i inventories/inventory.txt playbooks/playbook.yml
+```
+
