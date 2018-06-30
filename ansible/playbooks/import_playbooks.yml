@@ -1,5 +1,15 @@
 ---
-- import_playbook: playbook.yml
-- import_playbook: playbook.yml
-- import_playbook: playbook.yml
+- hosts: example
+  tasks:
+    - debug:
+        msg: a task in this playbook
+
+- name: first import other playbook
+  import_playbook: echo.yml
+
+- name: second import other playbook
+  import_playbook: echo.yml
+
+- name: third import other playbook 
+  import_playbook: echo.yml
 
