@@ -6,3 +6,4 @@
         msg: test
   roles:
     - example_role
+    - import_other_role
