@@ -4,3 +4,5 @@
     - name: echo message
       debug:
         msg: test
+  roles:
+    - example_role
