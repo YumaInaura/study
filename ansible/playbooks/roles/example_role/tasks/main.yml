@@ -1,4 +1,4 @@
 - name: example role debug echo
   debug:
-   msg: this is echo in role
+   msg: this is example role
   
