@@ -1,4 +1,7 @@
 - name: example role debug echo
   debug:
    msg: this is example role
-  
+- import_role:
+    name: example_role2
+  vars:
+    call_from: tasks
