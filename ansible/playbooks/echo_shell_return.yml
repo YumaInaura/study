@@ -8,3 +8,6 @@
     - name: show previous shell stdout
       debug:
         msg: "{{ return_from_shell.stdout }}" # .stdout に標準出力の結果が入っている
+    - name: show previous shell return
+      debug:
+        msg: "{{ return_from_shell }}"
