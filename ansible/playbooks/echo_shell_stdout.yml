@@ -1,0 +1,9 @@
+---
+- hosts: example
+  tasks:
+    - name: echo message in shell
+      shell: echo some message
+      register: return_from_shell
+    - name: echo stdout
+      debug:
+        msg: "{{ return_from_shell.stdout }}"
