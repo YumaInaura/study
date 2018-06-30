@@ -1,0 +1,2 @@
+dependencies:
+  - { role: example_role2, call_from: dependencies }
