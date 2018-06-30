@@ -16,3 +16,4 @@ RUN apt-get update && apt-get -y install python
 
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
+
