@@ -1,0 +1,8 @@
+---
+- hosts: example
+  tasks:
+    - name: echo message
+      debug:
+        msg: test
+  roles:
+    - import_other_role
