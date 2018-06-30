@@ -1,9 +1,10 @@
 ---
 - hosts: example
   tasks:
-    - name: echo message in shell
+    - name: execute shell
       shell: echo some message
-      register: return_from_shell
-    - name: echo stdout
+      register: return_from_shell # 実行結果をansible変数に入れる
+      changed_when: no
+    - name: show previous shell stdout
       debug:
-        msg: "{{ return_from_shell.stdout }}"
+        msg: "{{ return_from_shell.stdout }}" # .stdout に標準出力の結果が入っている
