@@ -34,3 +34,13 @@
     - debug:
         msg: "{{ item }}"
       with_flattened: ["hello", ["ansible", [["world"]]]]
+
+    # hello1 ansible1 world1
+    # hello2 ansible2 world2
+    # hello3 ansible3 world3
+    - debug:
+        msg: "{{ item.0 }} {{ item.1 }} {{ item.2 }}"
+      with_together:
+        - ["hello1", "hello2", "hello3"]
+        - ["ansible1", "ansible2", "ansible3"]
+        - ["world1", "world2", "world3"]
