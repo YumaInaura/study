@@ -61,3 +61,13 @@
         msg: "{{ item }}"
       with_sequence: start=3 end=9 stride=3 format=%02x
 
+    # name : Alice , like : Apple
+    # name : Alice , like : Microsoft
+    # name : Bob , like : Soccer
+    # name : Bob , like : Basket
+    - debug:
+        msg: "name : {{ item.0.name }} , like : {{ item.1 }}"
+      with_subelements: 
+        - [{ name: "Alice", sex: "female", likes: ["Apple", "Microsoft"] }, { name: "Bob", sex: "male", likes: ["Soccer", "Basket"] }]
+        - likes
+      tags: with_subelements
