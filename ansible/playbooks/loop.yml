@@ -51,3 +51,11 @@
     - debug:
         msg: "{{ item.key }} {{ item.value}}"
       with_dict: {a: "hello", b: "ansible", c: "world" }
+
+    # 03
+    # 06
+    # 09
+    - debug:
+        msg: "{{ item }}"
+      with_sequence: start=3 end=9 stride=3 format=%02x
+
