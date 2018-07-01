@@ -1,13 +1,15 @@
 - hosts: example
   tasks:
 
-    # message1
-    # message2
+    # hello
+    # ansible
+    # world
     - debug:
         msg: "{{ item }}"
       with_list:
         - hello
-        - message2
+        - ansible
+        - world
 
     - set_fact:
         messages: ["hello", "ansible", "world"]
@@ -26,6 +28,9 @@
         msg: "{{ item.0 }} - {{ item.1 }}"
       with_indexed_items: "{{ messages }}"
 
+    # hello
+    # ansible
+    # world
     - debug:
         msg: "{{ item }}"
-      with_flattened: ["hello", ["ansible", "world"]]
+      with_flattened: ["hello", ["ansible", [["world"]]]]
