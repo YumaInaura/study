@@ -1,4 +1,0 @@
-- name: echo this role where call from
-  debug:
-   msg: this is example 2 role call from {{ call_from }}
-  
