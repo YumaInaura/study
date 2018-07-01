@@ -1,0 +1,9 @@
+---
+- hosts: example
+  tasks:
+    - include_role:
+        name: echo_debug
+    - include_role:
+        name: echo_debug
+    - include_role:
+        name: echo_debug
