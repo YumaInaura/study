@@ -1,5 +1,5 @@
 - import_role:
-    name: example_role2
+    name: echo_variable
   vars:
     call_from: tasks
   tags: import_role

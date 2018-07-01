@@ -1,0 +1,4 @@
+- name: echo ansible variable
+  debug:
+   msg: this role was called from {{ call_from }}
+  
