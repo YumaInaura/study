@@ -1,0 +1,7 @@
+- hosts: example
+  tasks:
+    - debug:
+        msg: "{{ item }}"
+      loop:
+        - message1
+        - message2
