@@ -11,3 +11,11 @@
     - name: show previous shell return
       debug:
         msg: "{{ return_from_shell }}"
+    - name: when shell return succeeded
+      debug:
+        msg: yes succeeded
+      when: return_from_shell is succeeded
+    - name: when shell return failed
+      debug:
+        msg: yes failed
+      when: return_from_shell is failed
