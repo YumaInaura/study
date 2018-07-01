@@ -44,3 +44,10 @@
         - ["hello1", "hello2", "hello3"]
         - ["ansible1", "ansible2", "ansible3"]
         - ["world1", "world2", "world3"]
+
+    # a hello
+    # b ansible
+    # c world
+    - debug:
+        msg: "{{ item.key }} {{ item.value}}"
+      with_dict: {a: "hello", b: "ansible", c: "world" }
