@@ -8,6 +8,14 @@
 
     - set_fact:
         messages: ["hello", "ansible", "world"]
+
     - debug:
         msg: "{{ item }}"
       with_items: "{{ messages }}"
+
+    # 0 - hello
+    # 1 - ansible
+    # 2 - world
+    - debug:
+        msg: "{{ item.0 }} - {{ item.1 }}"
+      with_indexed_items: "{{ messages }}"
