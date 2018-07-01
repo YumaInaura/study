@@ -1,3 +1,17 @@
-- set_fact:
+- name: set variables a and b
+  set_fact:
+    a: foo
+    b: var
+- debug:
+    msg: a variable value is {{ a }}
+- debug:
+    msg: b variable value is {{ b }}
+
+- name: set variables x and y
+  set_fact:
     x: foo
     y: var
+- debug:
+    msg: x variable value is {{ x }}
+- debug:
+    msg: y variable value is {{ y }}
