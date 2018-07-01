@@ -2,6 +2,12 @@
   tasks:
     - debug:
         msg: "{{ item }}"
-      loop:
+      with_list:
         - message1
         - message2
+
+    - set_fact:
+        messages: ["hello", "ansible", "world"]
+    - debug:
+        msg: "{{ item }}"
+      with_items: "{{ messages }}"
