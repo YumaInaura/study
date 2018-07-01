@@ -3,14 +3,7 @@
   tasks:
     - import_role:
         name: set_variable
-      when: x is not defined
-    - import_role:
-        name: set_variable
-      when: x is not defined
-    - debug:
-        msg: x variable value is {{ x }}
+      when: a is not defined
     - include_role:
         name: set_variable
-      when: y is not defined
-    - debug:
-        msg: y variable value is {{ y }}
+      when: x is not defined
