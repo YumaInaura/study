@@ -6,7 +6,7 @@
     - debug:
         msg: "{{ item }}"
       with_list:
-        - message1
+        - hello
         - message2
 
     - set_fact:
@@ -26,3 +26,6 @@
         msg: "{{ item.0 }} - {{ item.1 }}"
       with_indexed_items: "{{ messages }}"
 
+    - debug:
+        msg: "{{ item }}"
+      with_flattened: ["hello", ["ansible", "world"]]
