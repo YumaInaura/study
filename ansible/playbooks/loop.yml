@@ -87,3 +87,9 @@
         - ["ansible", "world"]
         - ["strong", "zero"]
       tags: with_nested
+
+    # hello or ansible or world
+    - debug:
+        msg: "{{ item }}"
+      with_random_choice: ["hello", "ansible", "world"]
+      tags: with_random_choice
