@@ -72,13 +72,18 @@
         - likes
       tags: with_subelements
 
-    # hello ansible
-    # hello world
-    # bye ansible
-    # bye world
+    # hello ansible strong
+    # hello world zero 
+    # bye ansible strong
+    # bye world zero
+    # hello ansible strong 
+    # hello world zero
+    # bye ansible strong
+    # bye world zero
     - debug:
         msg: "{{ item.0 }} {{ item.1 }}"
       with_nested:
         - ["hello", "bye"]
         - ["ansible", "world"]
+        - ["strong", "zero"]
       tags: with_nested
