@@ -71,3 +71,14 @@
         - [{ name: "Alice", sex: "female", likes: ["Apple", "Microsoft"] }, { name: "Bob", sex: "male", likes: ["Soccer", "Basket"] }]
         - likes
       tags: with_subelements
+
+    # hello ansible
+    # hello world
+    # bye ansible
+    # bye world
+    - debug:
+        msg: "{{ item.0 }} {{ item.1 }}"
+      with_nested:
+        - ["hello", "bye"]
+        - ["ansible", "world"]
+      tags: with_nested
