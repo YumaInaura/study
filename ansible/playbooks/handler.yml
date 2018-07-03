@@ -2,6 +2,7 @@
 ---
 - hosts: example
 
+<<<<<<< HEAD
   # FIXME : not work
   handlers:
     - debug:
@@ -11,4 +12,14 @@
   tasks:
     - debug:
       notify: hook
+=======
+  handlers:
+    - debug:
+        msg: i am the handler
+      listen: "hook"
+
+  tasks:
+    - shell: ls # debug module does not notify to handler, so use some other module
+      notify: "hook"
+>>>>>>> Add ansible handler playbook
 
