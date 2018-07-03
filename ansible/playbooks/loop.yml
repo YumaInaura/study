@@ -69,10 +69,16 @@
     - debug:
         msg: "name : {{ item.0.name }} , like : {{ item.1 }}"
       with_subelements: 
-        - [
-            { name: "Alice", likes: ["Apple", "Banana", "Microsoft"] },
-            { name: "Bob", likes: ["Soccer", "Basket"] }
-          ]
+        - 
+          - name: "Alice"
+            likes:
+              - Apple
+              - Banana
+              - Microsoft
+          - name: Bob
+            likes:
+            - Soccer
+            - Basket
         - likes
       tags: with_subelements
 
