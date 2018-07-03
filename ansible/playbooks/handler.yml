@@ -1,0 +1,14 @@
+# https://docs.ansible.com/ansible/devel/user_guide/playbooks_intro.html#handlers-running-operations-on-change
+---
+- hosts: example
+
+  # FIXME : not work
+  handlers:
+    - debug:
+        msg: i am the handler
+        listen: hook
+
+  tasks:
+    - debug:
+      notify: hook
+

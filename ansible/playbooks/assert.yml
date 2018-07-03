@@ -1,4 +1,8 @@
 - hosts: example
+  vars:
+    num: 1
   tasks:
     - assert:
-        that: true
+        that: num == 1
+    - assert:
+        that: num <= 2
