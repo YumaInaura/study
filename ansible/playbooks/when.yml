@@ -1,0 +1,10 @@
+- hosts: localhost
+  tasks:
+    - debug:
+        msg: "when true"
+      when: true
+    
+    - debug:
+        msg: "when not false"
+      when: not false
+
