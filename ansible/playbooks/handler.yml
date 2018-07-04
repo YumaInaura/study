@@ -2,13 +2,19 @@
 ---
 - hosts: example
 
-  # FIXME : not work
   handlers:
     - debug:
         msg: i am the handler
-        listen: hook
+      listen: hook to me
+    - debug:
+        msg: you are the handler
+      listen: hook to you
 
   tasks:
-    - debug:
-      notify: hook
+    - shell: ls # debug module does not notify to handler, so use some other module
+      notify: hook to me
+    - shell: ls
+      notify: hook to me  # hook twice but run handler once
+    - shell: ls
+      notify: hook to you
 
