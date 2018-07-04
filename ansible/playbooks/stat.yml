@@ -8,4 +8,9 @@
         path: hello-ansible-world
       register: dir
 
-    - debug: msg={{ dir }}
+    - debug:
+        msg: "{{ dir }}"
+
+    - debug:
+        msg: directory exists
+      when: dir.stat.exists
