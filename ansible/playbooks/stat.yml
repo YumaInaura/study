@@ -1,0 +1,11 @@
+- hosts: localhost
+  tasks:
+    - file:
+        path: hello-ansible-world
+        state: directory
+
+    - stat:
+        path: hello-ansible-world
+      register: dir
+
+    - debug: msg={{ dir }}

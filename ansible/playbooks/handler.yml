@@ -2,17 +2,6 @@
 ---
 - hosts: example
 
-<<<<<<< HEAD
-  # FIXME : not work
-  handlers:
-    - debug:
-        msg: i am the handler
-        listen: hook
-
-  tasks:
-    - debug:
-      notify: hook
-=======
   handlers:
     - debug:
         msg: i am the handler
@@ -23,14 +12,9 @@
 
   tasks:
     - shell: ls # debug module does not notify to handler, so use some other module
-<<<<<<< HEAD
-      notify: "hook"
->>>>>>> Add ansible handler playbook
-=======
       notify: hook to me
     - shell: ls
       notify: hook to me  # hook twice but run handler once
     - shell: ls
       notify: hook to you
->>>>>>> Fix ansible handler playbook work
 
