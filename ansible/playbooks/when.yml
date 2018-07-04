@@ -1,0 +1,14 @@
+- hosts: localhost
+  tasks:
+    - set_fact:
+        true_variable: true
+        false_variable: false
+
+    - debug:
+        msg: "when true"
+      when: true_variable
+    
+    - debug:
+        msg: "when not false"
+      when: not false_variable
+
