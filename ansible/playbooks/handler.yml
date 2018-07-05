@@ -9,12 +9,24 @@
     - debug:
         msg: you are the handler
       listen: hook to you
+    - debug:
+        msg: he is the handler
+      listen: hook to him
 
   tasks:
-    - shell: ls # debug module does not notify to handler, so use some other module
+    - debug:
+        msg: message
+      changed_when: true
       notify: hook to me
-    - shell: ls
+    - debug: 
+        msg: try to hook to me
+      changed_when: true
       notify: hook to me  # hook twice but run handler once
-    - shell: ls
+    - debug:
+        msg: try to hook to you
+      changed_when: true
       notify: hook to you
-
+    - debug:
+        msg: try to hook to him
+      changed_when: false # no changed no hook
+      notify: hook to him
