@@ -1,15 +1,9 @@
 require 'retriable'
 
-class Example
-  def get
-    Retriable.retriable do |info|
-      p info
-      raise
-    end
-  end
+Retriable.retriable do |info|
+  p info
+  raise
 end
-
-Example.new.get
 
 # 1
 # 2
