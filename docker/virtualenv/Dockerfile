@@ -14,13 +14,20 @@ RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so
 ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
 
-# FOR Ansible
-RUN apt-get update && apt-get -y install python git gcc make openssl libssl-dev libbz2-dev libreadline-dev libsqlite3-dev
+RUN apt-get update && apt-get -y install curl python git gcc make openssl libssl-dev libbz2-dev libreadline-dev libsqlite3-dev
 
-# pyenv
-RUN git clone git://github.com/yyuu/pyenv.git ~/pyenv
-RUN mkdir -p ~/pyenv/versions ~/pyenv/shims
-COPY .bash_profile .
+# util
+RUN apt-get -y install vim
+
+# pyenv install
+RUN curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+
+# pyenv init
+ENV PATH="/root/.pyenv/bin:$PATH"
+RUN eval "$(pyenv init -)"
+RUN eval "$(pyenv virtualenv-init -)"
+COPY .append_bash_profile .
+RUN cat .append_bash_profile >> ~/.bash_profile && rm .append_bash_profile
 
 EXPOSE 22
 
