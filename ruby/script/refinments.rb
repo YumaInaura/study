@@ -9,6 +9,8 @@ end
 class SomeClass
 end
 
+# p SomeClass.name.first_5_characters # undefined method `first_5_characters' for "SomeClass":String (NoMethodError)
+
 using RefineStringModule
 
 p SomeClass.name.first_5_characters # SomeC
