@@ -1,8 +1,26 @@
 - hosts: example
   vars:
     num: 1
+    some_string: some string
+    assert_string: some string
   tasks:
     - assert:
         that: num == 1
     - assert:
         that: num <= 2
+
+    # equivalence of variable and variable
+    - assert:
+        that: some_string == assert_string
+
+    # equivalence of variable and string
+    - assert:
+        that: some_string == 'some string'
+
+    # equivalence of variable and variable expansion
+    - assert:
+        that: some_string == '{{ assert_string }}'
+
+   # not work because no meaning assesion
+    - assert:
+        that: 'some string' == 'some string'
