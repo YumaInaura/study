@@ -10,6 +10,13 @@
           - num == 1
           - num <= 2
 
+    - assert:
+        that:
+          - num is defined
+          - unknown is not defined
+          - not unknown is defined
+
+    - assert:
         that:
           # equivalence of variable and variable
           - some_string == assert_string
