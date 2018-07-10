@@ -1,20 +1,24 @@
 - hosts: example
-  vars:
-    num: 1
-    some_string: MY NAME IS ME
-    assert_string: MY NAME IS ME
 
   tasks:
     - assert:
         that:
           - num == 1
           - num <= 2
+      vars:
+        num: 1
 
     - assert:
         that:
-          - num is defined
+          - known is defined
           - unknown is not defined
           - not unknown is defined
+          - known is defined and unknown is not defined
+          - not known is not defined
+          - known is defined or known is not defined
+          - not (known is defined and known is not defined)
+      vars:
+        known: true
 
     - assert:
         that:
@@ -29,6 +33,9 @@
 
           # equivalence of string and string : not use variables ( double quotes for YAML syntax not for ansible )
           - "'MY NAME IS ME' == 'MY NAME IS ME'"
+      vars:
+        some_string: MY NAME IS ME
+        assert_string: MY NAME IS ME
 
     - command: /bin/true
       register: true_result 
@@ -39,10 +46,13 @@
 
     - command: /bin/false
       register: false_result 
+      ignore_errors: yes
 
     - assert:
         that:
           - true_result is succeeded
+          - true_result is not failed
           - changed_result is changed
           - false_result is failed
+          - false_result is not succeeded
 
