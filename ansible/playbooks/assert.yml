@@ -29,3 +29,20 @@
 
           # equivalence of string and string : not use variables ( double quotes for YAML syntax not for ansible )
           - "'MY NAME IS ME' == 'MY NAME IS ME'"
+
+    - command: /bin/true
+      register: true_result 
+
+    - command: /bin/true
+      register: changed_result 
+      changed_when: yes
+
+    - command: /bin/false
+      register: false_result 
+
+    - assert:
+        that:
+          - true_result is succeeded
+          - changed_result is changed
+          - false_result is failed
+
