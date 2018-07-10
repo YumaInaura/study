@@ -8,8 +8,6 @@ end
 
 class SomeClass
   using MyRefineStringModule
-  
-  puts 1.to_s # overwritten by refinements
 
   def some_instance_method
     1.to_s
@@ -25,3 +23,7 @@ puts SomeClass.new.some_instance_method # overwritten by refinments
 puts SomeClass.some_class_method # overwritten by refinments
 
 puts 1.to_s # 1
+
+using MyRefineStringModule
+
+puts 1.to_s # overwritten by refinements
