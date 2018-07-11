@@ -1,11 +1,11 @@
 - hosts: localhost
   tasks:
     - file:
-        path: hello-ansible-world
+        path: some_dir
         state: directory
 
     - stat:
-        path: hello-ansible-world
+        path: some_dir
       register: dir
 
     - debug:
@@ -14,3 +14,7 @@
     - debug:
         msg: directory exists
       when: dir.stat.exists
+
+    - file:
+        path: some_dir
+        state: absent
