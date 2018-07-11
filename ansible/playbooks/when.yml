@@ -1,24 +1,27 @@
 - hosts: localhost
   tasks:
     - set_fact:
-        true_variable: true
-        false_variable: false
         alice:
           name: Alice
           job: not engineer
           age: 98
           evil_mind: # empty string 
           changed: true
-          success: true
+          success: "true"
+          failure: false
           kicked: true
 
+    # present string evaluate as true
     - debug:
-        msg: "when true"
-      when: true_variable
-    
+        msg: "Alice's name is {{ alice.name }}"
+      when:
+        - alice.name
+
+    # not present string evaluate as false
     - debug:
-        msg: "when not false"
-      when: not false_variable
+        msg: "Alice is not evil"
+      when:
+        - not alice.evil_mind
 
     # skipped
     - debug:
@@ -27,11 +30,18 @@
         - not_defined_variable is defined 
         - not_defined_variable # not evaluate
 
-    # present string evaluate as true
+    # skipped
     - debug:
-        msg: "Alice's name is {{ alice.name }}"
+        msg: "not exists variable exists why ?"
       when:
-        - alice.name
+        - not_defined_variable is defined and not_defined_variable
+
+    # You can use "is succeeded" conditional syntax
+    # because alice dictionary has "success" key and boolean value
+    - debug:
+        msg: "Alice has succeeded as not enginner"
+      when:
+        - alice is succeeded
 
     - debug:
         msg: "Alice is not evil"
@@ -45,12 +55,12 @@
       when:
         - alice is changed
 
-    # You can use "is succeeded" conditional syntax
-    # because alice dictionary has "success" key and boolean value
+    # You can use "is failed" conditional syntax
+    # because alice dictionary has "failure" key and boolean value
     - debug:
-        msg: "Alice has succeeded as not enginner"
+        msg: "Alice was not failed to swimming"
       when:
-        - alice is succeeded
+        - alice is not failed
 
     # You can not use some new original conditional syntax
     #  The conditional check 'alice is kicked' failed. The error was: template error while templating string: no test named 'kicked'
