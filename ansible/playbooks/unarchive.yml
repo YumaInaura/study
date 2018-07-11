@@ -1,5 +1,17 @@
 - hosts: example
   tasks:
+    - file:
+        path: example.txt
+        state: absent
+
     - unarchive:
         src: files/example.tar.gz
         dest: .
+      register: unarchived
+
+    - debug:
+        msg: "{{ unarchived }}"
+
+    - assert:
+        that:
+          - unarchived is changed
