@@ -3,6 +3,13 @@
     - set_fact:
         true_variable: true
         false_variable: false
+        alice:
+          name: Alice
+          job: not engineer
+          age: 98
+          changed: true
+          success: true
+          kick: true
 
     - debug:
         msg: "when true"
@@ -12,3 +19,41 @@
         msg: "when not false"
       when: not false_variable
 
+    # skipped
+    - debug:
+        msg: "not exists variable exists why ?"
+      when:
+        - not_defined_variable is defined 
+        - not_defined_variable # not evaluate
+
+    - debug:
+        msg: "Alice's name is {{ alice.name }}"
+      when:
+        - alice.name
+
+    # You can use "is changed" conditional syntax
+    # because alice dictionary has "changed" key and boolean value
+    - debug:
+        msg: "Alice was changed"
+      when:
+        - alice is changed
+
+    # You can use "is succeeded" conditional syntax
+    # because alice dictionary has "success" key and boolean value
+    - debug:
+        msg: "Alice has succeeded as not enginner"
+      when:
+        - alice is succeeded
+
+    # You can not use some new original conditional syntax
+    #  The conditional check 'alice is kicked' failed. The error was: template error while templating string: no test named 'kicked'
+    # - debug:
+    #    msg: "Alice has kicked from chat room"
+    #  when:
+    #    - alice is kicked
+
+    # skipped
+    - debug:
+        msg: "Can you see unknown information of Alice?"
+      when:
+        - alice.not_defined_info is defined
