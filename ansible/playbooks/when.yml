@@ -7,9 +7,10 @@
           name: Alice
           job: not engineer
           age: 98
+          evil_mind: # empty string 
           changed: true
           success: true
-          kick: true
+          kicked: true
 
     - debug:
         msg: "when true"
@@ -26,10 +27,16 @@
         - not_defined_variable is defined 
         - not_defined_variable # not evaluate
 
+    # present string evaluate as true
     - debug:
         msg: "Alice's name is {{ alice.name }}"
       when:
         - alice.name
+
+    - debug:
+        msg: "Alice is not evil"
+      when:
+        - not alice.evil_mind
 
     # You can use "is changed" conditional syntax
     # because alice dictionary has "changed" key and boolean value
