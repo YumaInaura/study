@@ -1,0 +1,38 @@
+- hosts: localhost
+  tasks:
+    - file:
+        path: ./files/example.txt
+        state: touch
+
+    - archive:
+        path:
+          - ./files/example.txt
+        dest: ./files/example.zip
+        format: zip
+        remove: yes
+ 
+    - unarchive:
+        src: ./files/example.zip
+        dest: ./files
+      register: unarchived
+
+    - shell: mv -f ./files/example.txt ./files/moved.txt
+      when: unarchived
+
+    - debug:
+        msg: "{{ unarchived }}"
+
+    - assert:
+        that:
+          - unarchived is changed
+
+    - stat:
+        path: ./files/moved.txt
+      register: moved_file
+
+    - debug:
+        msg: "{{ moved_file }}"
+
+    - file:
+        path: ./files/moved.txt
+        state: absent
