@@ -1,0 +1,33 @@
+- hosts: localhost
+  tasks:
+    - debug:
+        msg: add register of debug module result!
+      register: debugged_register
+
+    # "msg": {
+    #     "changed": false,
+    #     "failed": false,
+    #     "msg": "add register of debug module result!"
+    # }
+    - debug:
+        msg: "{{ debugged_register }}"
+
+    - debug:
+        msg: add register of debug module result!
+      register: not_executed_module_register
+      when: false
+
+    #  "msg": {
+    #      "changed": false,
+    #      "skip_reason": "Conditional result was False",
+    #      "skipped": true
+    #  }
+    - debug:
+        msg: "{{ not_executed_module_register }}"
+
+    - assert:
+        that:
+          - not_executed_module_register is defined
+          - not_executed_module_register is not changed
+          - not_executed_module_register is skipped
+ 
