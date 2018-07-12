@@ -1,7 +1,8 @@
 - hosts: localhost
   tasks:
-    - debug:
-        msg: add register of debug module result!
+    - name: add register with execute debug module
+      debug:
+        msg: add debug module result into debugged_register variable
       register: debugged_register
 
     # "msg": {
@@ -9,10 +10,12 @@
     #     "failed": false,
     #     "msg": "add register of debug module result!"
     # }
-    - debug:
+    - name: show register variable values set by execute debug module
+      debug:
         msg: "{{ debugged_register }}"
 
-    - debug:
+    - name: skip execute task but register got variable
+      debug:
         msg: add register of debug module result!
       register: not_executed_module_register
       when: false
@@ -22,7 +25,8 @@
     #      "skip_reason": "Conditional result was False",
     #      "skipped": true
     #  }
-    - debug:
+    - name: show not_executed_module_register variable
+      debug:
         msg: "{{ not_executed_module_register }}"
 
     - assert:
