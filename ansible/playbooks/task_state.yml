@@ -1,0 +1,31 @@
+- hosts:
+    - localhost
+  tasks:
+    - name: skip
+      debug:
+        msg: this task will be skipped
+      when: false
+
+    - name: do -> ok
+      debug:
+        msg: task has done and return ok
+
+    - name: do -> changed
+      debug:
+        msg: task has done and return changed
+      changed_when: yes
+
+    - name: do -> failed -> ignoring
+      debug:
+        msg: task has done, return failed, and continue to next task
+      failed_when: yes
+      ignore_errors: yes
+ 
+    - name: do -> failed -> exit
+      debug:
+        msg: task has done, return failed, and exit ( do not continue to next task )
+      failed_when: yes
+ 
+    - name: after failed task
+      debug:
+        msg: task will be not run because previous task has failed and exit
