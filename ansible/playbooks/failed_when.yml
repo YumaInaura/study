@@ -1,0 +1,56 @@
+- hosts: localhost
+  tasks:
+    - name: shell return true and task will be ok
+      shell: "true"
+      register: true_ok
+
+    - name: you can see shell return code is 0 with ok task
+      debug:
+        msg: "{{ true_ok }}"
+
+    - name: shell return true and task will be changed
+      shell: "true"
+      changed_when: yes
+      register: true_changed
+
+    - name: you can see shell return code is 0 with changed task
+      debug:
+        msg: "{{ true_changed }}"
+
+    - name: shell return true and task will be failed but ignoring
+      shell: "true"
+      failed_when: yes
+      ignore_errors: yes
+      register: true_failed
+
+    - name: you can see shell return code is 0 with failed task
+      debug:
+        msg: "{{ true_failed }}"
+
+    - name: shell return false but task will be ok
+      shell: "false"
+      failed_when: no
+      changed_when: no
+      register: false_ok
+
+    - name: you can see shell return code is not 0 with ok task
+      debug:
+        msg: "{{ false_ok }}"
+
+    - name: shell return false but task will be changed
+      shell: "false"
+      failed_when: no
+      register: false_changed
+
+    - name: you can see shell return code is not 0 with changed task
+      debug:
+        msg: "{{ false_changed }}"
+
+    - name: shell returl false and task will be failed but ignoring
+      shell: "false"
+      ignore_errors: yes
+      register: false_failed_ignoring
+
+    - name: you can see shell return code is not 0 with failed task
+      debug:
+        msg: "{{ false_failed_ignoring }}"
