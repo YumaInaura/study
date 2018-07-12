@@ -7,8 +7,8 @@
           age: 98
           evil_mind: # empty string 
           changed: true
-          success: "true"
-          failure: false
+          skipped: true
+          failed: false
           kicked: true
 
     # present string evaluate as true
@@ -23,21 +23,8 @@
       when:
         - not alice.evil_mind
 
-    # skipped
-    - debug:
-        msg: "not exists variable exists why ?"
-      when:
-        - not_defined_variable is defined 
-        - not_defined_variable # not evaluate
-
-    # skipped
-    - debug:
-        msg: "not exists variable exists why ?"
-      when:
-        - not_defined_variable is defined and not_defined_variable
-
     # You can use "is succeeded" conditional syntax
-    # because alice dictionary has "success" key and boolean value
+    # when alice dictionary has "failed" key and false value then evaluated as succeeded
     - debug:
         msg: "Alice has succeeded as not enginner"
       when:
@@ -56,11 +43,18 @@
         - alice is changed
 
     # You can use "is failed" conditional syntax
-    # because alice dictionary has "failure" key and boolean value
+    # because alice dictionary has "failed" key and false value
     - debug:
         msg: "Alice was not failed to swimming"
       when:
         - alice is not failed
+
+    # You can use "is skipped" conditional syntax
+    # because alice dictionary has "skipped" key and true value
+    - debug:
+        msg: "Alice skipped school programs when she was a child."
+      when:
+        - alice is skipped
 
     # You can not use some new original conditional syntax
     #  The conditional check 'alice is kicked' failed. The error was: template error while templating string: no test named 'kicked'
@@ -69,8 +63,37 @@
     #  when:
     #    - alice is kicked
 
-    # skipped
-    - debug:
+    - name: This task will be skipped because alice has no not_found key in he dictionary
+      debug:
         msg: "Can you see unknown information of Alice?"
       when:
-        - alice.not_defined_info is defined
+        - alice.not_found is defined
+
+    - set_fact:
+        bob:
+          failed: true
+
+    - debug:
+        msg: "{{ bob }}"
+
+    - name: 'This task will be skipped because bob has failed key value on his dictionary'
+      debug:
+        msg: "Bob is succeeded even he does not say anything."
+      when:
+        - bob is succeeded
+
+    - name: 'This task will be skipped because bob has not changed key on his dictionary'
+      debug:
+        msg: "Bob is succeeded even he does not say anything."
+      when:
+        - bob is change
+
+    - set_fact:
+        carol:
+          name: carol
+
+    - debug:
+        msg: Carol is succeeded because she has no failed in her dictionary
+      when:
+        - carol is succeeded
+        - carol is not failed
