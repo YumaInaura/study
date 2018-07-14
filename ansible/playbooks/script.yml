@@ -1,14 +1,16 @@
 - hosts:
     - example
   tasks:
-    - name: Execute locale echo script
+    - name: Execute local shell script
       script: files/echo.sh arg1 arg2
+      environment:
+        SOME_ENV: some env value
       changed_when: no
       register: script_result
 
     - name: Show previous script module result
       debug:
-        msg: "{{ script_result }}"
+        var: script_result
 
     - name: Show shell script stdout
       debug:
@@ -18,3 +20,18 @@
       debug:
         msg: "{{ item }}"
       with_items: "{{ script_result.stdout_lines }}"
+
+    - name: Execute local python script
+      script: files/print.py
+      args:
+        executable: python
+      changed_when: no
+      register: python_script_result
+ 
+    - name: Show python script executed result
+      debug:
+        var: python_script_result
+
+    - file:
+        path: ex
+        state: touch
