@@ -1,3 +1,5 @@
+# FIXME: can not run tasks to multiple hosts
+
 # You can specify multiple hosts and tasks
 - hosts:
     - group1
