@@ -1,0 +1,17 @@
+# https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html#controlling-what-defines-failure
+
+- hosts:
+    - example
+  tasks:
+    - name: This step will return ok because not match to failed_when condition
+      shell: echo ok && exit 1
+      register: shell_result
+      failed_when: "'ng' in shell_result.stdout" 
+
+    - debug:
+        var: shell_result
+
+    - name: This step will be failed because match to failed_when condtion
+      shell: echo ng && exit 1
+      register: shell_result
+      failed_when: "'ng' in shell_result.stdout" 
