@@ -39,6 +39,7 @@
 
     - command: /bin/true
       register: true_result
+      changed_when: no
 
     - command: /bin/true
       register: changed_result 
@@ -61,20 +62,31 @@
         that:
           - "'string' in 'Here is some string'"
 
+    - name: set fruits and vegetables
+      set_fact:
+        fruits:
+          - apple
+          - banana
+        vegetables:
+          - asparagus
+          - broccoli 
+   
     - name: Assert string in array
       assert:
         that:
           - "'banana' in fruits"
-      vars:
-        fruits:
-          - apple
-          - banana
 
     - name: Assert not string in array
       assert:
         that:
           - "'cherry' not in fruits"
-      vars:
-        fruits:
-          - apple
-          - banana
+
+    - name: Assert equivalence array and array
+      assert:
+        that:
+          - fruits == fruits
+
+    - name: Assert difference array between another array
+      assert:
+        that:
+          - fruits != vegetables
