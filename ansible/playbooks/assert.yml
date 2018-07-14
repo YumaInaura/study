@@ -38,7 +38,7 @@
         assert_string: MY NAME IS ME
 
     - command: /bin/true
-      register: true_result 
+      register: true_result
 
     - command: /bin/true
       register: changed_result 
@@ -56,3 +56,25 @@
           - false_result is failed
           - false_result is not succeeded
 
+    - name: Assert string in string
+      assert:
+        that:
+          - "'string' in 'Here is some string'"
+
+    - name: Assert string in array
+      assert:
+        that:
+          - "'banana' in fruits"
+      vars:
+        fruits:
+          - apple
+          - banana
+
+    - name: Assert not string in array
+      assert:
+        that:
+          - "'cherry' not in fruits"
+      vars:
+        fruits:
+          - apple
+          - banana
