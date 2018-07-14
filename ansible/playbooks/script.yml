@@ -1,0 +1,20 @@
+- hosts:
+    - example
+  tasks:
+    - name: Execute locale echo script
+      script: files/echo.sh arg1 arg2
+      changed_when: no
+      register: script_result
+
+    - name: Show previous script module result
+      debug:
+        msg: "{{ script_result }}"
+
+    - name: Show shell script stdout
+      debug:
+        msg: "shell script stdout is ... {{ script_result.stdout }}"
+
+    - name: Show shell script stdout lines
+      debug:
+        msg: "{{ item }}"
+      with_items: "{{ script_result.stdout_lines }}"
