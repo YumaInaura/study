@@ -1,0 +1,36 @@
+# You can specify multiple hosts and tasks
+- hosts:
+    - group1
+    - group2
+  tasks:
+    # First task
+    - name: debug message
+      debug: # Module
+        msg: # Module option
+
+    # Second task
+    - name:
+      shell: echo OK # Module
+      changed_when: no # Keyword for task
+
+# Next you can specify other groups and other tasks
+- hosts:
+    - group1
+    - group2
+    - group3
+  tasks:
+    - name: Execute shell and echo unixtime millisecond
+      shell: date +%s%N
+      register: shell_result
+      changed_when: no
+
+    - name: Show shell script result
+      debug:
+        var: shell_result
+
+    # First task
+    - name: debug alice variable
+      debug:
+        var: alice # this is "debug module" option
+      vars: # this is task keyword ( set variables in this task )
+        alice: My name is alice
