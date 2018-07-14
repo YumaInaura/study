@@ -60,7 +60,12 @@
     - name: Assert string in string
       assert:
         that:
-          - "'string' in 'Here is some string'"
+          - "'somebody' in 'Everybody here is somebody'"
+ 
+    - name: Assert string not in string
+      assert:
+        that:
+          - "'nobody' not in 'Everybody here is some somebody'"
 
     - name: set fruits and vegetables
       set_fact:
