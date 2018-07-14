@@ -3,6 +3,8 @@
   tasks:
     - name: Execute local shell script
       script: files/echo.sh arg1 arg2
+      # You can pass script ENV like...
+      # SOME_ENV="some env value" echo.sh
       environment:
         SOME_ENV: some env value
       changed_when: no
@@ -31,7 +33,3 @@
     - name: Show python script executed result
       debug:
         var: python_script_result
-
-    - file:
-        path: ex
-        state: touch
