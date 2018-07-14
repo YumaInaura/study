@@ -14,9 +14,10 @@ COPY copy.txt.gz /tmp
 
 # RUN EXAMPLE
 # 
-# $ docker build . -t ex
+# $ docker build . -t example
 # 
-# $ docker run -it /bin/ash
-#
-# / # ls /tmp
-# README.md    add.txt      copy.txt.gz
+# $ docker run example ls /tmp
+# README.md
+# add.txt
+# copy.txt.gz
+
