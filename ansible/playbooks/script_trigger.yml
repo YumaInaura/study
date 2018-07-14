@@ -1,0 +1,37 @@
+- hosts:
+   - example
+
+  tasks:
+    - name: This task will be run because trigger.txt not exists
+      script: files/echo.sh
+      args:
+        creates: trigger.txt # run only when file exist
+      changed_when: no
+
+    - name: This task will be skipped because trigger.txt not exists
+      script: files/echo.sh
+      args:
+        removes: trigger.txt # run only when file not exist
+      changed_when: no
+
+    - name: Touch trigger.txt
+      file:
+        path: trigger.txt
+        state: touch
+
+    - name: This task will be skipped because trigger.txt exists
+      script: files/echo.sh
+      args:
+        creates: trigger.txt # run only when file exist
+      changed_when: no
+
+    - name: This task will be run because trigger.txt exists
+      script: files/echo.sh
+      args:
+        removes: trigger.txt # run only when file exist
+      changed_when: no
+
+    - name: Cleanup trigger.txt
+      file:
+        path: trigger.txt
+        state: absent
