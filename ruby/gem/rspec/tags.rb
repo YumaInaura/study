@@ -13,11 +13,12 @@ RSpec.configure do |config|
     puts '"some_tag" not specified'
   end
 
-  # Run cases
-  # bundle exec rspec -fd rspec/tags_spec.rb
-  # bundle exec rspec -fd rspec/tags_spec.rb --tag=~some_tag ( excluce some_tag )
   config.before :all, some_tag: false do
-    puts 'config.before when some_tag: false'
+    puts 'before all when some_tag: false'
+  end
+  
+  config.before :example, some_tag: false do
+    puts 'before example when some_tag: false'
   end
 end
 
@@ -31,6 +32,7 @@ RSpec.describe do
   describe 'when run some_tag: true', some_tag: true do
     subject { true }
     it { is_expected.to be true }
+    it { is_expected.to be true }
   end
 
   # Run cases
@@ -41,6 +43,7 @@ RSpec.describe do
   # rspec -fd rspec/tags_spec.rb.rb --tag=another_tag
   describe 'when run some_tag: false', some_tag: false do
     subject { true }
+    it { is_expected.to be true }
     it { is_expected.to be true }
   end
 end
