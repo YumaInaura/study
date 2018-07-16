@@ -1,21 +1,26 @@
-# FIXME: can not run tasks to multiple hosts
+# Intro to Playbooks
+# https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html#about-playbooks
 
-# You can specify multiple hosts and tasks
+# You can specify multiple "Play" in one playbook
+
+# This is first Play
+# You can specify multiple hosts and tasks on one Play
 - hosts:
     - group1
     - group2
+  # Tasks have many steps with modules
   tasks:
-    # First task
+    # The first step of tasks
     - name: debug message
-      debug: # Module
+      debug: # Specify Module
         msg: # Module option
 
-    # Second task
+    # The second step of tasks
     - name:
-      shell: echo OK # Module
-      changed_when: no # Keyword for task
+      shell: echo OK
+      changed_when: no # directive for this task ( Not Module option )
 
-# Next you can specify other groups and other tasks
+# This is second Play
 - hosts:
     - group2
     - group3
@@ -33,7 +38,7 @@
     - name: debug alice variable
       debug:
         var: alice # this is "debug module" option
-      vars: # this is task keyword ( set variables in this task )
+      vars: # this is directive ( set variables in only this task )
         alice: My name is alice
 
     - name: touch file
