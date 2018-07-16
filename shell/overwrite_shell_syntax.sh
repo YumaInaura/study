@@ -1,9 +1,10 @@
 #!/bin/sh
 
+alias when=if
 alias end=fi
+alias so=then
 
-if [ true ]; then
+when [ true ]; so
   echo ok
 end
-
 
