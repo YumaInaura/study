@@ -2,9 +2,9 @@
 localhost
 
 [example:vars]
-ansible_ssh_user=root
+ansible_user=root
 ansible_port=2222
-ansible_ssh_pass=screencast
+ansible_pass=screencast
 
 [group1:children]
 example
@@ -16,7 +16,7 @@ example
 localhost
 
 [group3:vars]
-ansible_ssh_user=root
+ansible_user=root
 ansible_port=2223
-ansible_ssh_pass=screencast
+ansible_pass=screencast
 
