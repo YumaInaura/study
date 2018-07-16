@@ -17,8 +17,7 @@
 
 # Next you can specify other groups and other tasks
 - hosts:
-    #- group1
-    #- group2
+    - group2
     - group3
   tasks:
     - name: Execute shell and echo unixtime millisecond
