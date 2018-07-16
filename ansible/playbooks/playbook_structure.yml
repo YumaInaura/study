@@ -1,19 +1,21 @@
 # FIXME: can not run tasks to multiple hosts
 
 # You can specify multiple hosts and tasks
+
+# hosts can have multiple hosts and one "tasks" ( include many steps )
 - hosts:
     - group1
     - group2
   tasks:
-    # First task
+    # The first step of first tasks
     - name: debug message
-      debug: # Module
+      debug: # Specify Module
         msg: # Module option
 
-    # Second task
+    # The second step of first tasks
     - name:
-      shell: echo OK # Module
-      changed_when: no # Keyword for task
+      shell: echo OK
+      changed_when: no # Keyword for task ( Not Module option )
 
 # Next you can specify other groups and other tasks
 - hosts:
