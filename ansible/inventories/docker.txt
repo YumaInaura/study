@@ -7,7 +7,7 @@ dockerhost1
 [group2]
 dockerhost2
 
-[group2]
+[group3]
 dockerhost3
 
 [all:vars]
