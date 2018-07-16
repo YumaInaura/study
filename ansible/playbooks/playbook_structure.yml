@@ -17,8 +17,8 @@
 
 # Next you can specify other groups and other tasks
 - hosts:
-    - group1
-    - group2
+    #- group1
+    #- group2
     - group3
   tasks:
     - name: Execute shell and echo unixtime millisecond
@@ -36,3 +36,8 @@
         var: alice # this is "debug module" option
       vars: # this is task keyword ( set variables in this task )
         alice: My name is alice
+
+    - name: touch file
+      file:
+        path: touch.txt
+        state: touch
