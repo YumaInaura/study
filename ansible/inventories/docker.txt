@@ -1,0 +1,16 @@
+[example]
+dockerhost1
+
+[group1]
+dockerhost1
+
+[group2]
+dockerhost2
+
+[group2]
+dockerhost3
+
+[all:vars]
+ansible_user=root
+ansible_ssh_pass=screencast
+
