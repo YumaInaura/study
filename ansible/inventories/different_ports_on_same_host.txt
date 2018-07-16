@@ -1,0 +1,26 @@
+; Can not list multiple hosts have different ports on a same hostname
+;
+; $ ansible -i this_inventory_file.txt all --list-hosts
+;  hosts (1):
+;    localhost
+;
+; https://github.com/ansible/ansible/issues/8306
+
+; Ansible module works once only
+;
+; $ ansible -i this_inventory_file.txt all -m 'raw' -a 'echo ok'
+; localhost | SUCCESS | rc=0 >>
+; ok
+
+[group1]
+localhost
+
+[group1:vars]
+ansible_port=2221
+
+[group2]
+localhost
+
+[group2:vars]
+ansible_port=2222
+
