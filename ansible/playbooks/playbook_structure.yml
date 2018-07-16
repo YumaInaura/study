@@ -17,7 +17,6 @@
 
 # Next you can specify other groups and other tasks
 - hosts:
-    - group1
     - group2
     - group3
   tasks:
@@ -36,3 +35,8 @@
         var: alice # this is "debug module" option
       vars: # this is task keyword ( set variables in this task )
         alice: My name is alice
+
+    - name: touch file
+      file:
+        path: touch.txt
+        state: touch
