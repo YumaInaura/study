@@ -20,8 +20,8 @@ func main() {
 	go say("Bob", 5)   // Run in B goroutine
 	go say("Carol", 5) // Run in C goroutine
 
-	say("David", 3) // Run in D groutine
-	say("Diana", 3) // Run in D goroutine // Run after say("David")
+	say("David <=", 3) // Run in D groutine
+	say("Diana <=", 3) // Run in D goroutine // Run after say("David")
 }
 
 // Outputs Example
@@ -29,21 +29,21 @@ func main() {
 // Carol
 // Alice
 // Bob
-// David
+// David <=
 // Alice
-// David
+// David <=
 // Carol
 // Bob
 // Alice
 // Bob
-// David
+// David <=
 // Carol
-// Diana
+// Diana <=
 // Bob
 // Carol
 // Alice
 // Alice
 // Carol
 // Bob
-// Diana
-// Diana
+// Diana <=
+// Diana <=
