@@ -6,20 +6,22 @@ import "fmt"
 
 func main() {
 
+  // Keep 2 buffer spaces in channel
 	messages := make(chan string, 2)
 
-	// Spend 2 buffers, left 0 buffer
+	// Stack 2 buffers, left 0 buffer spaces
 	messages <- "One"
 	messages <- "Two"
 
-	// Release 1 buffer, left 1 buffer
-	fmt.Println(<-messages)
+	// Release 2 buffers, left 2 buffer spaces
+	fmt.Println(<-messages) // Print "One"
+  fmt.Println(<-messages) // Print "Two"
 
-	// Spend 1 buffer, left 0 buffer
-	messages <- "Three"
+	// Stack 2 buffers, left 0 buffer spaces
+	messages <- "One"
+	messages <- "Two"
 
-	// Oops! no more buffers
+	// Oops! no more buffer spaces
 	// fatal error: all goroutines are asleep - deadlock!
-	messages <- "Four"
-
+	messages <- "Two"
 }
