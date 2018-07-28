@@ -6,7 +6,7 @@ import "fmt"
 
 func main() {
 
-  // Keep 2 buffer spaces in channel
+	// Keep 2 buffer spaces in channel
 	messages := make(chan string, 2)
 
 	// Stack 2 buffers, left 0 buffer spaces
@@ -15,7 +15,7 @@ func main() {
 
 	// Release 2 buffers, left 2 buffer spaces
 	fmt.Println(<-messages) // Print "One"
-  fmt.Println(<-messages) // Print "Two"
+	fmt.Println(<-messages) // Print "Two"
 
 	// Stack 2 buffers, left 0 buffer spaces
 	messages <- "One"
