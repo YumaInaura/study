@@ -1,4 +1,4 @@
-// cf. https://gobyexample.com/channels
+// cf. https://programming.guide/go/detect-deadlock.html
 
 package main
 
@@ -8,8 +8,10 @@ import "time"
 func main() {
 	messages := make(chan string)
 
-	// No goroutines running at this line
-	// So can not send message to channel
+	// No other goroutines running at this line
+	// ( only main goroutine running )
+	// So main groutine can not send message to other groutines throgh channel
+	//
 	// messages <- "ping" // fatal error: all goroutines are asleep - deadlock!
 
 	// Other goroutines receive message from channel
