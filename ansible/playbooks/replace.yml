@@ -1,0 +1,14 @@
+- hosts:
+    - example
+  tasks:
+    - name: copy
+      copy:
+        src: files/people.txt
+        dest: ./
+
+    - name: replace
+      replace:
+        path: people.txt
+        regexp: '^Alice$'
+        replace: Alice is lady
+        backup: yes
